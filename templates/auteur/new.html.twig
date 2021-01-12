@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %}New Autor{% endblock %}
+
+{% block body %}
+{{form_start(frm)}}
+{{form_widget(frm)}}
+{{form_end(frm)}}
+    <a href="{{ path('index') }}">Retour</a>
+{% endblock %}

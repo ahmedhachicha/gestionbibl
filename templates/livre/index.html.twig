@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre index{% endblock %}
+
+{% block body %}
+    <h2>Books</h2>
+    <br>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Pages number</th>
+                <th>Date</th>
+                <th>Number of pages</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>ISBN</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td>{{ livre.id }}</td>
+                <td>{{ livre.titre }}</td>
+                <td>{{ livre.nbpage }}</td>
+                <td>{{ livre.date ? livre.date|date('Y-m-d') : '' }}</td>
+                <td>{{ livre.nbexemplaire }}</td>
+                <td>{{ livre.prix }}</td>
+                <td>{{ livre.PreviewName }}</td>
+                <td>{{ livre.isbn }}</td>
+                <td>
+                    <a href="{{ path('livre_show', {'id': livre.id}) }}"><span class="btn btn-success"><i class="fa fa-eye"></i></span></a>
+                    <a href="{{ path('livre_edit', {'id': livre.id}) }}"><span class="btn btn-info"><i class="fa fa-pencil"></i></span></a>
+                    <a href="{{ path('livre_delete', {'id': livre.id}) }}"><span class="btn btn-danger"><i class="fa fa-trash-o"></i></span></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('livre_new') }}"><button class="btn btn-success">Create new</button></a>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editor{% endblock %}
+
+{% block body %}
+    <h2>Editor</h2>
+    <br>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Editor name</th>
+                <th>Country</th>
+                <th>Adress</th>
+                <th>Phone number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for editeur in editeurs %}
+            <tr>
+                <td>{{ editeur.id }}</td>
+                <td>{{ editeur.nomEditeur }}</td>
+                <td>{{ editeur.pays }}</td>
+                <td>{{ editeur.adresse }}</td>
+                <td>{{ editeur.telephone }}</td>
+                <td>
+                    <a href="{{ path('editeur_show', {'id': editeur.id}) }}"><span class="btn btn-success"><i class="fa fa-eye"></i></span></a>
+                    <a href="{{ path('editeur_edit', {'id': editeur.id}) }}"><span class="btn btn-info"><i class="fa fa-pencil"></i></span></a>
+                    <a href="{{ path('editeur_delete', {'id': editeur.id}) }}"><span class="btn btn-danger"><i class="fa fa-trash-o"></i></span></a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('editeur_new') }}"><button class="btn btn-success">Create new</button></a>
+{% endblock %}

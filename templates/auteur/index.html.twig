@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AuteurController!{% endblock %}
+
+{% block body %}
+    <h2>Autor</h2>
+    <br>
+    <table class="table" xmlns="http://www.w3.org/1999/html">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Lastname</th>
+        <th>Firstname</th>
+        <th>bibliography</th>
+        <th>Actions</th>
+    </tr>
+    <tbody>
+    {%  for c,a  in liste %}
+    <tr>
+        <td>{{ c+1}}</td>
+        <td>{{ a.prenom }}</td>
+        <td>{{ a.nom }}</td>
+        <td>{{ a.bigraphie }}</td>
+        <td>
+            <a href="{{ path('show_autor',{'id':a.id}) }}"><span class="btn btn-success"><i class="fa fa-eye"></i></span></a>&nbsp;&nbsp;
+            <a href="{{ path('edit_autor',{'id':a.id})}}"><span class="btn btn-info"><i class="fa fa-pencil"></i></span></a>&nbsp;&nbsp;&nbsp;
+            <a href="{{ path('delete_autor',{'id':a.id})}}"><span class="btn btn-danger"><i class="fa fa-trash-o"></i></span></a>&nbsp;
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </thead>
+</table>
+    <a href="{{ path('new_autor') }}"><button class="btn btn-success">Create new</button></a>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+<!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/vendors.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/tables/datatable/responsive.bootstrap.min.css')}}">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+   <link rel="stylesheet" type="text/css" href="{{ asset('/app-assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/app-assets/css/bootstrap-extended.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/app-assets/css/colors.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/app-assets/css/components.css') }}">
+    <!-- END: Theme CSS-->
+
+
+<!-- BEGIN: Vendor JS-->
+<script src="{{ asset('/app-assets/vendors/js/vendors.min.js') }}"></script>
+<script src="{{ asset('/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js') }}"></script>
+<script src="{{ asset('/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js') }}"></script>
+<script src="{{ asset('/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js') }}"></script>
+<!-- BEGIN Vendor JS-->
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+{% if items | length >0 %}
+<table class="table">
+<thead>
+<tr>
+<th>id</th>
+<th>titre</th>
+<th>prix</th>
+<th>quantity</th>
+<th>total</th>
+<th></th>
+</thead>
+<tbody>
+{% for item in items %}
+<tr>
+<td>{{item.livre.id}}</td>
+<td>{{item.livre.titre}}</td>
+<td>{{item.livre.prix}}</td>
+<td>{{item.quantity}}</td>
+<td>{{item.livre.prix * item.quantity}}</td>
+<td><a href="{{path('cart_delete',{'id':item.livre.id})}}" class="btn btn-danger btn-sm">
+<i class="bx bx-trash"></i>
+</a></td>
+{% endfor %}
+</tbody>
+<tr>
+<td colspan="4"> total : </td>
+<td>{{total}}</td>
+<td></td>
+</tr>
+</table>
+{% else %}
+<p>vide</p>
+{% endif %}
+{% endblock %}
